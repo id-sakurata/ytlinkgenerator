@@ -17,12 +17,13 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const express_handlebars_1 = require("express-handlebars");
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const ytdl_core_1 = __importDefault(require("ytdl-core"));
+const path_1 = __importDefault(require("path"));
 const PORT = process.env.PORT || "5000";
 const app = (0, express_1.default)();
 const router = express_1.default.Router();
 const appName = 'YT Link Generator';
 const hbs = (0, express_handlebars_1.create)({
-    layoutsDir: 'views',
+    layoutsDir: path_1.default.join(__dirname, 'views'),
     defaultLayout: false
 });
 app.use(body_parser_1.default.json());
@@ -31,6 +32,7 @@ app.use((0, express_fileupload_1.default)({
     useTempFiles: true,
     tempFileDir: "./temp/"
 }));
+// Require static assets from public folder
 app.use(express_1.default.static('public'));
 app.engine('html', hbs.engine);
 app.set('view engine', 'html');

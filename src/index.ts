@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import {create} from 'express-handlebars';
 import fileUpload from 'express-fileupload';
 import ytdl from 'ytdl-core';
+import path from 'path';
 
 const PORT:string = process.env.PORT || "5000"; 
 const app = express();
@@ -10,7 +11,7 @@ const router = express.Router();
 const appName: string = 'YT Link Generator';
 
 const hbs = create({
-    layoutsDir: 'views',
+    layoutsDir: path.join(__dirname, 'views'),
     defaultLayout: false
 });
 
@@ -20,7 +21,9 @@ app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: "./temp/"
 }));
+// Require static assets from public folder
 app.use(express.static('public'));
+
 app.engine('html', hbs.engine);
 app.set('view engine', 'html');
 
