@@ -30,7 +30,7 @@ app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use((0, express_fileupload_1.default)());
 // Require static assets from public folder
-app.use(express_1.default.static('public'));
+app.use(express_1.default.static(path_1.default.join(process.cwd(), `public`)));
 app.engine('html', hbs.engine);
 app.set('view engine', 'html');
 // router area

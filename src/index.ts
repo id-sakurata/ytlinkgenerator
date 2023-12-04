@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( { extended: true } ));
 app.use(fileUpload());
 // Require static assets from public folder
-app.use(express.static('public'));
+app.use(express.static( path.join(process.cwd(), `public`) ));
 
 app.engine('html', hbs.engine);
 app.set('view engine', 'html');
