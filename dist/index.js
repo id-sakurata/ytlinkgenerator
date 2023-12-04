@@ -23,15 +23,12 @@ const app = (0, express_1.default)();
 const router = express_1.default.Router();
 const appName = 'YT Link Generator';
 const hbs = (0, express_handlebars_1.create)({
-    layoutsDir: path_1.default.join(__dirname, 'views'),
+    layoutsDir: path_1.default.join(process.cwd(), `views`),
     defaultLayout: false
 });
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
-app.use((0, express_fileupload_1.default)({
-    useTempFiles: true,
-    tempFileDir: "./temp/"
-}));
+app.use((0, express_fileupload_1.default)());
 // Require static assets from public folder
 app.use(express_1.default.static('public'));
 app.engine('html', hbs.engine);

@@ -11,16 +11,13 @@ const router = express.Router();
 const appName: string = 'YT Link Generator';
 
 const hbs = create({
-    layoutsDir: path.join(__dirname, 'views'),
+    layoutsDir: path.join(process.cwd(), `views`),
     defaultLayout: false
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( { extended: true } ));
-app.use(fileUpload({
-    useTempFiles: true,
-    tempFileDir: "./temp/"
-}));
+app.use(fileUpload());
 // Require static assets from public folder
 app.use(express.static('public'));
 
